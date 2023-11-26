@@ -26,21 +26,28 @@ void insertion_sort(int list[], int first, int last, int gap) {
 //	printf("gap:%d\n", gap);
 	for (i = first + gap; i <= last; i = i + gap) {
 		key = list[i];
-	
+		
+		//printf("|gap:%d|", gap,i);
+		//printf("| key: %d(%d), | ", key,i);
+		//처음에 한번 비교후 조건식에 
+		
 		for (j = i - gap; j >= first && key < list[j]; j = j - gap) {
-			
+			//printf("(%d  %d)", j + gap, j);
+			//printf("| j,list[%d]: %d|\n", j, list[j]);
 			list[j + gap] = list[j];
+			
 			//비교,이동 카운트 
 			compare_count++;
 			move_count++;
 		}
+		compare_count++;//마지막에 조건식에 맞지않아서 count되지 않는 한번을 추가 
 	
 		//key를 빠뀔자리에 삽입 카운트 제자리를 옮기는건 카운트 하지 않는다.
 		if (list[j + gap] != key) {
 			list[j + gap] = key;
-			move_count++;
+			move_count++;//이동 카운터는 자리를 바꿀때 두번 카운트 되는 방식으로 카운팅함 **
 		}
-	
+		//printf("movecount:%d\n", move_count);
 
 	}
 }
